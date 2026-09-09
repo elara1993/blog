@@ -1,0 +1,12 @@
+{
+  "name": "胖虎",
+  "author": "胖虎",
+  "bio": "一个热爱技术和生活的人。在这里分享学习心得、生活随笔和思考感悟。",
+  "avatar": "https://api.dicebear.com/7.x/initials/svg?seed=PH&backgroundColor=e8d5c4",
+  "socialLinks": {
+    "github": "https://github.com",
+    "twitter": "https://twitter.com",
+    "zhihu": "https://zhihu.com"
+  },
+  "email": "hello@panghu.blog"
+}

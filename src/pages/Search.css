@@ -1,0 +1,37 @@
+.search {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.search-header {
+  margin-bottom: 32px;
+}
+
+.search-title {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.search-result-count {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-top: -16px;
+  margin-bottom: 32px;
+}
+
+.empty {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 60px 0;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 32px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.back-link:hover {
+  color: var(--accent);
+}
