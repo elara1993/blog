@@ -1,18 +1,11 @@
-.section-title {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 32px;
+/* App global styles are now in index.css */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .main {
-  padding: 0 0 80px;
-}
-
-.container {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 0 24px;
+  flex: 1;
+  padding: 0 0 40px;
 }
