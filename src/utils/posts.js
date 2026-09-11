@@ -1,4 +1,4 @@
-import posts from './posts.json'
+import posts from '../data/posts.json'
 
 // 从 localStorage 加载用户发布的新文章
 export function loadPosts() {
