@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import posts from '../data/posts.json'
+import { getAllPosts, getAllTags } from '../utils/posts'
 import './Home.css'
 
 // 模拟文章配图（实际项目中可以从 posts.json 添加 image 字段）
@@ -10,10 +10,10 @@ const postImages = {
 }
 
 export default function Home() {
-  const sortedPosts = [...posts].sort((a, b) => new Date(b.date) - new Date(a.date))
+  const sortedPosts = getAllPosts()
   const featuredPost = sortedPosts[0]
   const recentPosts = sortedPosts.slice(1, 4)
-  const allTags = [...new Set(posts.flatMap(p => p.tags))]
+  const allTags = getAllTags()
 
   return (
     <div className="home">
@@ -46,7 +46,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="featured-image">
-                <img src={postImages[featuredPost.slug]} alt={featuredPost.title} />
+                <img src={postImages[featuredPost.slug] || postImages['hello-world']} alt={featuredPost.title} />
               </div>
             </div>
           </Link>
@@ -62,7 +62,7 @@ export default function Home() {
           {recentPosts.map(post => (
             <Link to={`/post/${post.slug}`} key={post.id} className="post-item">
               <div className="post-thumb">
-                <img src={postImages[post.slug]} alt={post.title} />
+                <img src={postImages[post.slug] || postImages['hello-world']} alt={post.title} />
               </div>
               <div className="post-content">
                 <h3 className="post-title">{post.title}</h3>
@@ -84,7 +84,7 @@ export default function Home() {
             <Link to="/tags" className="section-link">浏览更多 →</Link>
           </div>
           <div className="tags-cloud">
-            {allTags.map(tag => (
+            {allTags.slice(0, 10).map(tag => (
               <Link to={`/search?q=${tag}`} key={tag} className="tag">
                 #{tag}
               </Link>

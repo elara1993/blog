@@ -1,11 +1,10 @@
 import { useParams, Link } from 'react-router-dom'
-import posts from '../data/posts.json'
+import { getPostsByCategory } from '../utils/posts'
 import './Category.css'
 
 export default function Category() {
   const { name } = useParams()
-  const categoryPosts = posts.filter(p => p.category === name)
-  const sortedPosts = [...categoryPosts].sort((a, b) => new Date(b.date) - new Date(a.date))
+  const sortedPosts = getPostsByCategory(name)
 
   return (
     <div className="container">
@@ -26,6 +25,7 @@ export default function Category() {
               <div className="post-content">
                 <div className="post-meta">
                   <span className="post-date">{post.date}</span>
+                  <span className="post-category">{post.category}</span>
                 </div>
                 <h2 className="post-title">{post.title}</h2>
                 <p className="post-excerpt">{post.excerpt}</p>

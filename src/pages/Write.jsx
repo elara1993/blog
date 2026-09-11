@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { addPost } from '../utils/posts'
 import './Write.css'
 
 export default function Write() {
@@ -69,10 +70,8 @@ export default function Write() {
       readingTime: readingTime
     }
 
-    // 保存到 localStorage（实际项目中应该调用 API）
-    const existingPosts = JSON.parse(localStorage.getItem('blog-posts') || '[]')
-    existingPosts.push(newPost)
-    localStorage.setItem('blog-posts', JSON.stringify(existingPosts))
+    // 保存文章
+    addPost(newPost)
     
     // 清除草稿
     localStorage.removeItem('blog-draft')

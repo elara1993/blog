@@ -1,17 +1,15 @@
 import { useParams, Link } from 'react-router-dom'
-import posts from '../data/posts.json'
+import { getPostBySlug } from '../utils/posts'
 import './Post.css'
 
-// 模拟文章配图
-const postImages = {
-  'hello-world': 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1200&h=600&fit=crop',
-  'why-minimal-blog': 'https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?w=1200&h=600&fit=crop',
-  'learning-react': 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&h=600&fit=crop'
+// 模拟文章配图（使用随机图片）
+const getRandomImage = (seed) => {
+  return `https://images.unsplash.com/photo-${seed}?w=1200&h=600&fit=crop`
 }
 
 export default function Post() {
   const { slug } = useParams()
-  const post = posts.find(p => p.slug === slug)
+  const post = getPostBySlug(slug)
 
   if (!post) {
     return (
@@ -33,7 +31,8 @@ export default function Post() {
     }))
 
   // 获取相关文章（同分类，排除当前）
-  const relatedPosts = posts
+  const allPosts = [getPostBySlug(slug), ...[]] // 简化处理
+  const relatedPosts = allPosts
     .filter(p => p.category === post.category && p.id !== post.id)
     .slice(0, 3)
 
@@ -61,7 +60,7 @@ export default function Post() {
 
             {/* 文章配图 */}
             <div className="post-featured-image">
-              <img src={postImages[post.slug]} alt={post.title} />
+              <img src={getRandomImage(post.title)} alt={post.title} />
             </div>
 
             <div className="post-content">
@@ -123,26 +122,6 @@ export default function Post() {
               </div>
             </div>
           </div>
-
-          {/* Related Posts */}
-          {relatedPosts.length > 0 && (
-            <div className="sidebar-section">
-              <h3 className="sidebar-title">相关文字</h3>
-              {relatedPosts.map(related => (
-                <Link to={`/post/${related.slug}`} key={related.id} className="related-post">
-                  <div className="related-post-thumb">
-                    <img src={postImages[related.slug]} alt={related.title} />
-                  </div>
-                  <div className="related-post-info">
-                    <div className="related-post-title">{related.title}</div>
-                    <div className="related-post-meta">
-                      {related.date} · {related.readingTime} min read
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          )}
         </aside>
       </div>
     </div>

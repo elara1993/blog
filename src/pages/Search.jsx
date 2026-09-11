@@ -1,21 +1,12 @@
 import { useSearchParams, Link } from 'react-router-dom'
-import posts from '../data/posts.json'
+import { searchPosts } from '../utils/posts'
 import './Search.css'
 
 export default function Search() {
   const [searchParams] = useSearchParams()
   const query = searchParams.get('q') || ''
   
-  const results = query.trim()
-    ? posts.filter(p => 
-        p.title.toLowerCase().includes(query.toLowerCase()) ||
-        p.content.toLowerCase().includes(query.toLowerCase()) ||
-        p.tags.some(tag => tag.toLowerCase().includes(query.toLowerCase())) ||
-        p.category.toLowerCase().includes(query.toLowerCase())
-      )
-    : []
-
-  const sortedResults = [...results].sort((a, b) => new Date(b.date) - new Date(a.date))
+  const sortedResults = searchPosts(query)
 
   return (
     <div className="container">
