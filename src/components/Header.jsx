@@ -29,6 +29,7 @@ export default function Header() {
           <nav className={`nav ${mobileMenuOpen ? 'open' : ''}`}>
             <Link to="/" className={isActive('/') ? 'active' : ''}>首页</Link>
             <Link to="/posts" className={isActive('/posts') ? 'active' : ''}>文章</Link>
+            <Link to="/write" className={isActive('/write') ? 'active' : ''}>写日志</Link>
             <Link to="/about" className={isActive('/about') ? 'active' : ''}>关于</Link>
             <form onSubmit={handleSearch} className="search-form">
               <input
@@ -39,7 +40,7 @@ export default function Header() {
                 className="search-input"
               />
             </form>
-            <Link to="/" className="subscribe-btn">订阅更新</Link>
+            <Link to="/write" className="subscribe-btn">写日志</Link>
           </nav>
 
           <div className="mobile-menu-btn" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>

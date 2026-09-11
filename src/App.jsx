@@ -6,6 +6,7 @@ import Post from './pages/Post'
 import About from './pages/About'
 import Category from './pages/Category'
 import Search from './pages/Search'
+import Write from './pages/Write'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/category/:name" element={<Category />} />
             <Route path="/search" element={<Search />} />
+            <Route path="/write" element={<Write />} />
           </Routes>
         </main>
         <Footer />
