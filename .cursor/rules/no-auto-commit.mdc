@@ -1,0 +1,13 @@
+---
+description: Never automatically commit code
+alwaysApply: true
+---
+
+# No Auto Commit
+
+Never create a git commit unless the user explicitly asks to commit.
+
+- Writing or editing files is fine
+- Do not run `git add` / `git commit` on your own
+- Do not treat "push", "check status", or "are there uncommitted changes" as permission to commit
+- Only commit when the user clearly says to commit (or equivalent, like "提交这些改动")
